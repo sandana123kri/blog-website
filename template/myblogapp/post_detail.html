@@ -1,0 +1,27 @@
+<!-- myblog/templates/myblog/post_detail.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ post.title }}</title>
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content }}</p>
+    <img src="/media/{{post.image}}" style="width: 800px;height:400px;" alt="">
+
+    <h2>Comments</h2>
+    {% for comment in coms %}
+        <p>{{ comment.body }} - {{ comment.name }}</p>
+    {% empty %}
+        <p>No comments yet.</p>
+    {% endfor %}
+
+    <h2>Add a comment</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

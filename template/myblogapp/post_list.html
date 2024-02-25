@@ -1,0 +1,26 @@
+<!-- myblog/templates/myblog/post_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog - Post List</title>
+</head>
+<body>
+  <h1>Blog -post List</h1>
+  {% for post in posts %}
+     <div>
+      <h2>{{ post.title}} - {{post.author}}</h2>
+      <p>{{ post.content |truncatewords:20 |safe}}</p>
+      <img src="/media/{{post.image}}" style="width: 100px;height:100px;" alt="">
+      <a href="{% url 'post_detail' post.pk %}">Read more</a>
+     </div>
+  {% endfor %}
+  <h2>Add a post</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
