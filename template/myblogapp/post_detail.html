@@ -10,7 +10,8 @@
     <p>{{ post.content }}</p>
     <img src="/media/{{post.image}}" style="width: 800px;height:400px;" alt="">
 
-    <h2>Comments</h2>
+    
+<h2>Comments</h2>
     {% for comment in coms %}
         <p>{{ comment.body }} - {{ comment.name }}</p>
     {% empty %}
